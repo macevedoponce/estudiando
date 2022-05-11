@@ -7,18 +7,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <h6>Importar Docentes .csv</h6>
-                <form action="{{ route('docentes.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="input-group mb-3">
-                      <input class="form-control" type="file" name="import_file">
-                      <button type="submit" class="btn btn-dark  mb-0"><i class="fa fa-fw fa-trash"></i> Importar</button>
-                  </div>
-              </form>
-            </div>
-              </div>
+            
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
@@ -33,29 +22,23 @@
                                   {{ __('Crear Nuevo Docente') }}
                                 </a>
                               </div>
-                              <div class="d-md-flex justify-content-md-end">
+                              <div class="float-right">
                                 <form action="{{route('docentes.index')}}" method="get">
-
                                   <div class="btn-group">
-                                    <input type="text" name="busqueda" id="busqueda" class="form-control">
+                                    <input class="form-control me-2 " name="busqueda" id="busqueda" type="search" placeholder="Buscar" aria-label="Search">
                                     <input type="submit" value="buscar" class="btn btn-primary">
                                   </div>
-
                                 </form>
                               </div>
-
-                              
-                              
-
                         </div>
                     </div>
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
 
                     <div class="card">
+                      @if ($message = Session::get('success'))
+                      <div class="alert alert-success">
+                          <p>{{ $message }}</p>
+                      </div>
+                  @endif
                         <div class="table-responsive">
                             <table class="table align-items-center mb-0">
                                 <thead>

@@ -74,14 +74,18 @@ class AlumnoController extends Controller
             'aluDni.min'=>'El DNI debe de tener al menos 8 caracteres',
             'aluDni.max'=>'El DNI no debe de tener más de 8 caracteres'
         ];
+        if($request->hasFile('import_file')){
+            $campos=['import_file'=>'required|mimes:csv,txt,xlsx'];
+            $mensaje=['import_file.required'=>'El archivo de importacion es necesario',
+            'import_file.mimes'=>'Solo se acepta archivos csv, txt, xlsx'];
+        }
         $this->validate($request,$campos,$mensaje);
 
         $file = $request->file('import_file');
         if($file){
             Excel::import(new AlumnosImport, $file);
-        }
-
-        request()->validate(Alumno::$rules);
+        }else{
+            request()->validate(Alumno::$rules);
 
         $alumno = Alumno::create([
             'aluDni' => $request['aluDni'],
@@ -91,7 +95,7 @@ class AlumnoController extends Controller
             'aluPassword' => Hash::make($request['aluPassword']),
         ]);
 
-
+        }
         return redirect()->route('alumnos.index')
             ->with('success', 'Alumno creado exitosamente !');
     }

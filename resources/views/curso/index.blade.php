@@ -10,27 +10,12 @@
 
             <div class="col-sm-12">
                 <div class="card">
-                    <h6>Importar Cursos .csv</h6>
-                <form action="{{ route('cursos.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="input-group mb-3">
-                        <input class="form-control" type="file" name="import_file">
-                        <button type="submit" class="btn btn-primary  mb-0"><i class="fa fa-fw fa-trash"></i> Importar</button>
-                    </div>
-                </form>
-
-            </div>
-              </div>
-
-            <div class="col-sm-12">
-                <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
                                 {{ __('Curso') }}
                             </span>
-
                              <div class="float-right">
                                 <a href="{{ route('cursos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear nuevo curso') }}
@@ -38,9 +23,8 @@
                               </div>
                               <div class="d-md-flex justify-content-md-end">
                                 <form action="{{route('cursos.index')}}" method="get">
-
                                   <div class="btn-group">
-                                    <input type="text" name="busqueda" id="busqueda" class="form-control">
+                                    <input class="form-control me-2 " name="busqueda" id="busqueda" type="search" placeholder="Buscar" aria-label="Search">
                                     <input type="submit" value="buscar" class="btn btn-primary">
                                   </div>
 
@@ -48,13 +32,14 @@
                               </div>
                         </div>
                     </div>
+
+                    <div class="card">
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success">
                             <p>{{ $message }}</p>
                         </div>
                     @endif
 
-                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead">

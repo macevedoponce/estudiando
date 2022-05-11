@@ -80,18 +80,22 @@ class CursoController extends Controller
             'curNombre.unique'=>'El Nombre del curso ya esta ocupado'
             
         ];
+        if($request->hasFile('import_file')){
+            $campos=['import_file'=>'required|mimes:csv,txt,xlsx'];
+            $mensaje=['import_file.required'=>'El archivo de importacion es necesario',
+            'import_file.mimes'=>'Solo se acepta archivos csv, txt, xlsx'];
+        }
         $this->validate($request,$campos,$mensaje);
 
         $file = $request->file('import_file');
         if($file){
             Excel::import(new CursosImport, $file);
+        }else{
+            request()->validate(Curso::$rules);
+
+            $curso = Curso::create($request->all());
         }
-
-
-        request()->validate(Curso::$rules);
-
-        $curso = Curso::create($request->all());
-
+        
         return redirect()->route('cursos.index')
             ->with('success', 'Curso creado exitosamente !');
     }

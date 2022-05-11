@@ -1,14 +1,3 @@
-@if (count($errors)>0)
-<div class="alert alert-danger" role="alert">
-
-<ul>
-    @foreach ($errors->all() as $error)
-    <li>{{ $error }}</li>  
-  @endforeach
-</ul>
-</div>
-@endif
-
 <div class="box box-info padding-1">
     <div class="form-group">
         <strong>Dni:</strong>

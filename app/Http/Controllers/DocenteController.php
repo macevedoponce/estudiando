@@ -7,6 +7,8 @@ use App\Models\Docente;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Hash;
+
+
 /**
  * Class DocenteController
  * @package App\Http\Controllers
@@ -54,11 +56,11 @@ class DocenteController extends Controller
     public function store(Request $request)
     {
         $campos=[
-            'docDni' => 'required|max:8|unique:docentes',
+            'docDni' => 'required|max:8|min:8|unique:docentes',
             'docNombres' => 'required|string|max:50',
             'docApellidoPaterno' => 'required|string|max:50',
             'docApellidoMaterno' => 'required|string|max:50',
-            'docPassword' => 'required|min:5|max:20',
+            'docPassword' => 'required|min:5|max:20'
         ];
         $mensaje=[
             'docDni.required'=>'El DNI del docente es requerido',
@@ -66,27 +68,39 @@ class DocenteController extends Controller
             'docApellidoPaterno.required'=>'El Apellido Paterno del docente es requerido',
             'docApellidoMaterno.required'=>'El Apellido Matenro del docente es requerido',
             'docPassword.required'=>'La Contraseña del docente es requerido',
-            'docDni.unique'=>'El DNI ya esta ocupado'
+            'docDni.unique'=>'El DNI ya esta ocupado',
+            'docDni.min'=>'El DNI debe de tener al menos 8 caracteres',
+            'docDni.max'=>'El DNI no debe de tener más de 8 caracteres'
         ];
+
+        if($request->hasFile('import_file')){
+            $campos=['import_file'=>'required|mimes:csv,txt,xlsx'];
+            $mensaje=['import_file.required'=>'El archivo de importacion es necesario',
+            'import_file.mimes'=>'Solo se acepta archivos csv, txt, xlsx'];
+        }
         $this->validate($request,$campos,$mensaje);
 
         $file = $request->file('import_file');
         if($file){
             Excel::import(new DocentesImport, $file);
         }
+        else{
+            request()->validate(Docente::$rules);
 
-        request()->validate(Docente::$rules);
+            $docente = Docente::create([
+                'docDni' => $request['docDni'],
+                'docNombres' => $request['docNombres'],
+                'docApellidoPaterno' => $request['docApellidoPaterno'],
+                'docApellidoMaterno' => $request['docApellidoMaterno'],
+                'docPassword' => Hash::make($request['docPassword']),
+            ]);
 
-        $docente = Docente::create([
-            'docDni' => $request['docDni'],
-            'docNombres' => $request['docNombres'],
-            'docApellidoPaterno' => $request['docApellidoPaterno'],
-            'docApellidoMaterno' => $request['docApellidoMaterno'],
-            'docPassword' => Hash::make($request['docPassword']),
-        ]);
-
+        }
+            
         return redirect()->route('docentes.index')
-            ->with('success', 'Docente agregado exitosamente !');
+        ->with('success', 'Docente agregado exitosamente !');
+
+        
     }
 
     /**
@@ -162,4 +176,6 @@ class DocenteController extends Controller
         return redirect()->route('docentes.index')
             ->with('success', 'Docente eliminado exitosamente !');
     }
+
+   
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 /**
  * Class Docente
  *
@@ -48,6 +49,5 @@ class Docente extends Model
     {
         return $this->hasMany('App\Models\Curso', 'docId', 'id');
     }
-    
 
 }
