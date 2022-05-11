@@ -67,7 +67,7 @@ class CursoController extends Controller
     {
 
         $campos=[
-            'curCodigo' => 'required|unique:cursos',
+            'curCodigo' => 'required|max:7|min:7|unique:cursos',
             'curNombre' => 'required',
             'docId' => 'required|string|max:50',
             'graId' => 'required|string|max:50',
@@ -79,7 +79,9 @@ class CursoController extends Controller
             'graId.required'=>'El Grado es requerido',
             'secId.required'=>'La seccion es requerida',
             'curCodigo.required'=>'El Codigo del Curso es requerido',
-            'curCodigo.unique'=>'El Codigo del curso ya esta ocupado'
+            'curCodigo.unique'=>'El Codigo del curso ya esta ocupado',
+            'curCodigo.max'=>'El Codigo debe de tener 7 caracteres',
+            'curCodigo.min'=>'El Codigo debe de tener 7 caracteres'
             
         ];
         if($request->hasFile('import_file')){

@@ -40,7 +40,7 @@ class CursosImport implements ToModel, WithBatchInserts, WithChunkReading, WithV
     {
         return [
             
-            '*.0' => ['required','string', 'unique:cursos,curCodigo'],
+            '*.0' => ['required','string','max:7','min:7','unique:cursos,curCodigo'],
             '*.1' => ['required','string'],
             '*.2' => ['required',],
             '*.3' => [ 'required', ],
@@ -53,6 +53,8 @@ class CursosImport implements ToModel, WithBatchInserts, WithChunkReading, WithV
     {
         return [
             '*.0.required' => 'El Codigo del curso es requerido',
+            '*.0.max'=>'El codigo del curso tiene 7 caracteres maximo',
+            '*.0.min'=>'El codigo del curso tiene 7 caracteres minimo',
             '*.0.unique' => 'El Codigo del curso ya fue registrado anteriormente',
             '*.1.required' => 'El Nombre del curso es requerido',
             '*.2.required' => 'El DNI del docente es requerido',
