@@ -6,16 +6,9 @@ use App\Models\Docente;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithValidation;
-/*
-prueba
-*/
 
-use Maatwebsite\Excel\Concerns\WithProgressBar;
-/*
-fin
-prueba
-*/
-class DocentesImport implements ToModel, WithValidation,WithProgressBar
+
+class DocentesImport implements ToModel, WithValidation
 {
     /**
     * @param array $row

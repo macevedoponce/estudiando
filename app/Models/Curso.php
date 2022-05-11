@@ -26,6 +26,7 @@ class Curso extends Model
 {
     
     static $rules = [
+        'curCodigo' => 'required',
 		'curNombre' => 'required',
 		'docId' => 'required',
 		'graId' => 'required',
@@ -39,7 +40,7 @@ class Curso extends Model
      *
      * @var array
      */
-    protected $fillable = ['curNombre','docId','graId','secId'];
+    protected $fillable = ['curCodigo','curNombre','docId','graId','secId'];
 
 
     /**

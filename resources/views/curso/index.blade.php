@@ -45,6 +45,7 @@
                                 <thead class="thead">
                                     <tr class="text-secondary text-xxs font-weight-bolder opacity-7 text-center">
                                         <th>No</th>
+                                        <th>CÓDIGO</th>
 										<th>CURSO</th>
 										<th>DOCENTE</th>
 										<th>GRADO</th>
@@ -57,7 +58,7 @@
                                     @foreach ($cursos as $curso)
                                         <tr class="mb-0 text-xs text-uppercase text-center">
                                             <td>{{ ++$i }}</td>
-                                            
+                                            <td>{{ $curso->curCodigo }}</td>
 											<td>{{ $curso->curNombre }}</td>
 											<td>
                                                 {{ $curso->docente->docNombres}}

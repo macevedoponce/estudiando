@@ -29,20 +29,22 @@ class CursosImport implements ToModel, WithBatchInserts, WithChunkReading, WithV
     {
         // VERIFICAR QUE LOS DOCENTES ESTEN REGISTRADOS, GRADOS, SECCIONES
         return new Curso([
-            'curNombre'=> $row[0],
-            'docId'    => $this->docentes[$row['1']],
-            'graId'    => $this->grados[$row['2']],
-            'secId'    => $this->secciones[$row['3']]
+            'curCodigo'=> $row[0],
+            'curNombre'=> $row[1],
+            'docId'    => $this->docentes[$row['2']],
+            'graId'    => $this->grados[$row['3']],
+            'secId'    => $this->secciones[$row['4']]
          ]);
     }
     public function rules(): array
     {
         return [
             
-            '*.0' => ['required','string', 'unique:cursos,curNombre'],
-            '*.1' => ['required',],
-            '*.2' => [ 'required', ],
+            '*.0' => ['required','string', 'unique:cursos,curCodigo'],
+            '*.1' => ['required','string'],
+            '*.2' => ['required',],
             '*.3' => [ 'required', ],
+            '*.4' => [ 'required', ],
              
         ];
     }
@@ -50,11 +52,12 @@ class CursosImport implements ToModel, WithBatchInserts, WithChunkReading, WithV
     public function customValidationMessages()
     {
         return [
-            '*.0.required' => 'El Nombre del curso es requerido',
-            '*.0.unique' => 'El Nombre del curso ya fue registrado anteriormente',
-            '*.1.required' => 'El DNI del docente es requerido',
-            '*.2.required' => 'El Grado Paterno es requerido',
-            '*.3.required' => 'La Seccion es requerido',
+            '*.0.required' => 'El Codigo del curso es requerido',
+            '*.0.unique' => 'El Codigo del curso ya fue registrado anteriormente',
+            '*.1.required' => 'El Nombre del curso es requerido',
+            '*.2.required' => 'El DNI del docente es requerido',
+            '*.3.required' => 'El Grado Paterno es requerido',
+            '*.4.required' => 'La Seccion es requerido',
         ];
     }
 

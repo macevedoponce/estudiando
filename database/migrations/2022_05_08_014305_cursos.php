@@ -17,6 +17,7 @@ class Cursos extends Migration
         Schema::create('cursos', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->bigIncrements('id');
+            $table->string('curCodigo');
             $table->string('curNombre');
             $table->bigInteger('docId')->unsigned();
             $table->bigInteger('graId')->unsigned();

@@ -1,6 +1,11 @@
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="form-group">
+            <strong>Código:</strong><span> 3 letras del curso, 3 letras del grado, 1 letra de la seccion</span>
+            <input class="form-control" type="text" name="curCodigo" id="curCodigo" placeholder="MATPRIA"
+            value="{{isset($curso->curCodigo)?$curso->curCodigo:old('curCodigo') }}">
+        </div>
+        <div class="form-group">
             <strong>Nombre:</strong>
             <input class="form-control" type="text" name="curNombre" id="curNombre" 
             value="{{isset($curso->curNombre)?$curso->curNombre:old('curNombre') }}">

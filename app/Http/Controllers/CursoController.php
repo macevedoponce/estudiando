@@ -67,7 +67,8 @@ class CursoController extends Controller
     {
 
         $campos=[
-            'curNombre' => 'required|unique:cursos',
+            'curCodigo' => 'required|unique:cursos',
+            'curNombre' => 'required',
             'docId' => 'required|string|max:50',
             'graId' => 'required|string|max:50',
             'secId' => 'required|string|max:50',
@@ -77,7 +78,8 @@ class CursoController extends Controller
             'docId.required'=>'El Docente es requerido',
             'graId.required'=>'El Grado es requerido',
             'secId.required'=>'La seccion es requerida',
-            'curNombre.unique'=>'El Nombre del curso ya esta ocupado'
+            'curCodigo.required'=>'El Codigo del Curso es requerido',
+            'curCodigo.unique'=>'El Codigo del curso ya esta ocupado'
             
         ];
         if($request->hasFile('import_file')){
@@ -141,9 +143,12 @@ class CursoController extends Controller
     public function update(Request $request, Curso $curso)
     {
         $campos=[
+            'curCodigo' => 'required',
             'curNombre' => 'required',
+            
         ];
         $mensaje=[
+            'curCodigo.required'=>'El Codigo del Curso es requerido',
             'curNombre.required'=>'El Nombre del Curso es requerido'
         ];
         $this->validate($request,$campos,$mensaje);

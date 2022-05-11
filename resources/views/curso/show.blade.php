@@ -16,7 +16,10 @@
                     </div>
 
                     <div class="card-body">
-                        
+                        <div class="form-group">
+                            <strong>Código:</strong>
+                            {{ $curso->curCodigo }}
+                        </div>
                         <div class="form-group">
                             <strong>Curso:</strong>
                             {{ $curso->curNombre }}
