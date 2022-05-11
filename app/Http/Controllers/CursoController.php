@@ -136,6 +136,13 @@ class CursoController extends Controller
      */
     public function update(Request $request, Curso $curso)
     {
+        $campos=[
+            'curNombre' => 'required',
+        ];
+        $mensaje=[
+            'curNombre.required'=>'El Nombre del Curso es requerido'
+        ];
+        $this->validate($request,$campos,$mensaje);
         request()->validate(Curso::$rules);
 
         $curso->update($request->all());
