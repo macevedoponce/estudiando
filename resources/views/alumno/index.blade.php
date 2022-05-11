@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <h6>Importar alumnos .csv .xls</h6>
+                    <h6>Importar alumnos .csv</h6>
                 <form action="{{ route('alumnos.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="input-group mb-3">
@@ -108,7 +108,7 @@
                                                     <a class="btn btn-sm btn-success" href="{{ route('alumnos.edit',$alumno->id) }}"><i class="fa fa-fw fa-edit"></i></a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
+                                                    <button type="submit" onclick="return confirm('¿Quieres borrar?')" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

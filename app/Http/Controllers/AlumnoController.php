@@ -56,6 +56,26 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $campos=[
+            'aluDni' => 'required|max:8|min:8|unique:alumnos',
+            'aluNombres' => 'required|string|max:50',
+            'aluApellidoPaterno' => 'required|string|max:50',
+            'aluApellidoMaterno' => 'required|string|max:50',
+            'aluPassword' => 'required|min:5|max:20',
+        ];
+        $mensaje=[
+            'aluDni.required'=>'El DNI del alumno es requerido',
+            'aluNombres.required'=>'Los Nombres del alumno son requeridos',
+            'aluApellidoPaterno.required'=>'El Apellido Paterno del alumno es requerido',
+            'aluApellidoMaterno.required'=>'El Apellido Matenro del alumno es requerido',
+            'aluPassword.required'=>'La Contraseña del alumno es requerido',
+            'aluDni.unique'=>'El DNI ya esta ocupado',
+            'aluDni.min'=>'El DNI debe de tener al menos 8 caracteres',
+            'aluDni.max'=>'El DNI no debe de tener más de 8 caracteres'
+        ];
+        $this->validate($request,$campos,$mensaje);
+
         $file = $request->file('import_file');
         if($file){
             Excel::import(new AlumnosImport, $file);
@@ -111,6 +131,25 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, Alumno $alumno)
     {
+
+        $campos=[
+            'aluDni' => 'required|max:8|min:8',
+            'aluNombres' => 'required|string|max:50',
+            'aluApellidoPaterno' => 'required|string|max:50',
+            'aluApellidoMaterno' => 'required|string|max:50',
+            'aluPassword' => 'required|min:5',
+        ];
+        $mensaje=[
+            'aluDni.required'=>'El DNI del alumno es requerido',
+            'aluNombres.required'=>'Los Nombres del alumno son requeridos',
+            'aluApellidoPaterno.required'=>'El Apellido Paterno del alumno es requerido',
+            'aluApellidoMaterno.required'=>'El Apellido Matenro del alumno es requerido',
+            'aluPassword.required'=>'La Contraseña del alumno es requerido',
+            'aluDni.min'=>'El DNI debe de tener al menos 8 caracteres',
+            'aluDni.max'=>'El DNI no debe de tener más de 8 caracteres'
+        ];
+        $this->validate($request,$campos,$mensaje);
+
         request()->validate(Alumno::$rules);
 
         $alumno->update($request->all());

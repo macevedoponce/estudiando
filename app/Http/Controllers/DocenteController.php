@@ -53,6 +53,23 @@ class DocenteController extends Controller
      */
     public function store(Request $request)
     {
+        $campos=[
+            'docDni' => 'required|max:8|unique:docentes',
+            'docNombres' => 'required|string|max:50',
+            'docApellidoPaterno' => 'required|string|max:50',
+            'docApellidoMaterno' => 'required|string|max:50',
+            'docPassword' => 'required|min:5|max:20',
+        ];
+        $mensaje=[
+            'docDni.required'=>'El DNI del docente es requerido',
+            'docNombres.required'=>'Los Nombres del docente son requerido',
+            'docApellidoPaterno.required'=>'El Apellido Paterno del docente es requerido',
+            'docApellidoMaterno.required'=>'El Apellido Matenro del docente es requerido',
+            'docPassword.required'=>'La Contraseña del docente es requerido',
+            'docDni.unique'=>'El DNI ya esta ocupado'
+        ];
+        $this->validate($request,$campos,$mensaje);
+
         $file = $request->file('import_file');
         if($file){
             Excel::import(new DocentesImport, $file);
@@ -107,6 +124,24 @@ class DocenteController extends Controller
      */
     public function update(Request $request, Docente $docente)
     {
+
+        $campos=[
+            'docDni' => 'required|max:8',
+            'docNombres' => 'required|string|max:50',
+            'docApellidoPaterno' => 'required|string|max:50',
+            'docApellidoMaterno' => 'required|string|max:50',
+            'docPassword' => 'required',
+        ];
+        $mensaje=[
+            'docDni.required'=>'El DNI del docente es requerido',
+            'docNombres.required'=>'Los Nombres del docente son requerido',
+            'docApellidoPaterno.required'=>'El Apellido Paterno del docente es requerido',
+            'docApellidoMaterno.required'=>'El Apellido Matenro del docente es requerido',
+            'docPassword.required'=>'La Contraseña del docente es requerido',
+            'docDni.max'=>'El DNI solo tiene 8 caracteres'
+        ];
+        $this->validate($request,$campos,$mensaje);
+
         request()->validate(Docente::$rules);
 
         $docente->update($request->all());

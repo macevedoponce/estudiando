@@ -65,6 +65,23 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $campos=[
+            'curNombre' => 'required|unique:cursos',
+            'docId' => 'required|string|max:50',
+            'graId' => 'required|string|max:50',
+            'secId' => 'required|string|max:50',
+        ];
+        $mensaje=[
+            'curNombre.required'=>'El Nombre del Curso es requerido',
+            'docId.required'=>'El Docente es requerido',
+            'graId.required'=>'El Grado es requerido',
+            'secId.required'=>'La seccion es requerida',
+            'curNombre.unique'=>'El Nombre del curso ya esta ocupado'
+            
+        ];
+        $this->validate($request,$campos,$mensaje);
+
         $file = $request->file('import_file');
         if($file){
             Excel::import(new CursosImport, $file);
