@@ -10,6 +10,7 @@
   <hr class="horizontal dark mt-0">
   <div class="collapse navbar-collapse  w-auto" id="sidenav-collapse-main">
     <ul class="navbar-nav">
+
       <li class="nav-item">
         <a class="nav-link {{ (Request::is('dashboard') ? 'active' : '') }}" href="{{ url('dashboard') }}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -59,7 +60,15 @@
             <span class="nav-link-text ms-1">Cursos</span>
         </a>
       </li>
-      <!--
+      <li class="nav-item pb-2">
+        <a class="nav-link {{ (Request::is('dethorarios') ? 'active' : '') }}" href="{{ url('dethorarios') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i style="font-size: 1rem;" class="fas fa-lg fa-flag ps-2 pe-2 text-center text-dark {{ (Request::is('matriculas') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+            </div>
+            <span class="nav-link-text ms-1">Registrar Horario de Curso</span>
+        </a>
+      </li>
+      
       <li class="nav-item pb-2">
         <a class="nav-link {{ (Request::is('grados') ? 'active' : '') }}" href="{{ url('grados') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -84,8 +93,15 @@
             <span class="nav-link-text ms-1">Matricula</span>
         </a>
       </li>
-    -->
-
+      <li class="nav-item pb-2">
+        <a class="nav-link {{ (Request::is('horarios') ? 'active' : '') }}" href="{{ url('horarios') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i style="font-size: 1rem;" class="fas fa-lg fa-flag ps-2 pe-2 text-center text-dark {{ (Request::is('matriculas') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+            </div>
+            <span class="nav-link-text ms-1">Horas</span>
+        </a>
+      </li>
+      
       <!-- fIN MENU -->
       <!-- INICIO USUARIO MENU -->
       <li class="nav-item mt-2">

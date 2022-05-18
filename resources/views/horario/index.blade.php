@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.user_type.auth')
 
 @section('template_title')
     Horario
@@ -18,7 +18,7 @@
 
                              <div class="float-right">
                                 <a href="{{ route('horarios.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Create Nuevo Hora') }}
                                 </a>
                               </div>
                         </div>
@@ -36,11 +36,11 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Hordia</th>
-										<th>Horinicio</th>
-										<th>Horfin</th>
+										<!--<th>Hordia</th>-->
+										<th>Hora Inicio</th>
+										<th>Hora Fin</th>
 
-                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,17 +48,17 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $horario->horDia }}</td>
+											<!--<td>{{ $horario->horDia }}</td>-->
 											<td>{{ $horario->horInicio }}</td>
 											<td>{{ $horario->horFin }}</td>
 
                                             <td>
                                                 <form action="{{ route('horarios.destroy',$horario->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('horarios.show',$horario->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('horarios.edit',$horario->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('horarios.show',$horario->id) }}"><i class="fa fa-fw fa-eye"></i></a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('horarios.edit',$horario->id) }}"><i class="fa fa-fw fa-edit"></i></a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <!--<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>-->
                                                 </form>
                                             </td>
                                         </tr>

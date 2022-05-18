@@ -1,10 +1,10 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
+
         <div class="form-group">
-            {{ Form::label('secNombre') }}
-            {{ Form::text('secNombre', $seccion->secNombre, ['class' => 'form-control' . ($errors->has('secNombre') ? ' is-invalid' : ''), 'placeholder' => 'Secnombre']) }}
-            {!! $errors->first('secNombre', '<div class="invalid-feedback">:message</div>') !!}
+            <strong>Nombre:</strong>
+            <input class="form-control" type="text" name="secNombre" id="secNombre" 
+        value="{{isset($seccion->secNombre)?$seccion->secNombre:old('secNombre') }}">
         </div>
 
     </div>

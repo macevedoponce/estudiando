@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Imports\CursosImport;
 use App\Models\Curso;
 use App\Models\Docente;
@@ -24,15 +23,14 @@ class CursoController extends Controller
     public function index(Request $request)
     {
         $busqueda = $request->busqueda;
-        $cursos = Curso::where('curNombre','like','%'.$busqueda.'%')
-        /*->orWhere('docId','like','%'.$busqueda.'%')
-        ->orWhere('graId','like','%'.$busqueda.'%')*/
-        ->orWhere('secId','like','%'.$busqueda.'%')
+        $cursos = Curso::where('curCodigo','like','%'.$busqueda.'%')
+        ->orWhere('curNombre','like','%'.$busqueda.'%')/*
+        ->orWhere('graId','like','%'.$busqueda.'%')
+        ->orWhere('secId','like','%'.$busqueda.'%')*/
         ->paginate(5);
 
         $data =[
             'cursos'=>$cursos,
-
             'busqueda'=>$busqueda,
         ];
 

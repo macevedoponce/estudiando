@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.user_type.auth')
+
 
 @section('template_title')
     Dethorario
@@ -35,32 +36,32 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-										<th>Horid</th>
-                                        <th>Horid</th>
-                                        <th>Horid</th>
-										<th>Curid</th>
+                                        <th>Curso</th>
+                                        <th>Día</th>
+                                        <th>Hora Inicio</th>
+                                        <th>Hora Fin</th>
+										
 
-                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($dethorarios as $dethorario)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $dethorario->horario->horDia }}</td>
-                                            <td>{{ $dethorario->horario->horInicio }}</td>
-                                            <td>{{ $dethorario->horario->horFin }}</td>
-											<td>{{ $dethorario->curId}}</td>
+                                            <td>{{ $dethorario->curso->curCodigo}} | {{ $dethorario->curso->curNombre}}</td>
+                                            <td>{{ $dethorario->dia }}</td>
+                                            <td>{{ $dethorario->hora_inicio }}</td>
+                                            <td>{{ $dethorario->hora_fin }}</td>
+											
 
                                             <td>
                                                 <form action="{{ route('dethorarios.destroy',$dethorario->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('dethorarios.show',$dethorario->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('dethorarios.edit',$dethorario->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('dethorarios.show',$dethorario->id) }}"><i class="fa fa-fw fa-eye"></i></a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('dethorarios.edit',$dethorario->id) }}"><i class="fa fa-fw fa-edit"></i></a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

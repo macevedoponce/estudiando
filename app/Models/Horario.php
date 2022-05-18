@@ -22,7 +22,6 @@ class Horario extends Model
 {
     
     static $rules = [
-		'horDia' => 'required',
 		'horInicio' => 'required',
 		'horFin' => 'required',
     ];
@@ -34,7 +33,7 @@ class Horario extends Model
      *
      * @var array
      */
-    protected $fillable = ['horDia','horInicio','horFin'];
+    protected $fillable = ['horInicio','horFin'];
 
 
     /**

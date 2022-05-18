@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.user_type.auth')
 
 @section('template_title')
     Create Dethorario
@@ -7,6 +7,23 @@
 @section('content')
     <section class="content container-fluid">
         <div class="row">
+              <!-- mensaje -->
+              <div class="card-header">
+                <div class="float-right">
+                    <a class="btn btn-primary" href="{{ route('dethorarios.index') }}"> Volver</a>
+                </div>
+            </div>
+            @if (count($errors)>0)
+            <div class="alert alert-danger" role="alert">
+
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>  
+            @endforeach
+            </ul>
+            </div>
+            @endif
+        <!-- fin mensaje -->
             <div class="col-md-12">
 
                 @includeif('partials.errors')

@@ -24,6 +24,7 @@ class Matricula extends Model
 {
     
     static $rules = [
+        'matPeriodo' => 'required',
 		'aluId' => 'required',
 		'graId' => 'required',
 		'secId' => 'required',
@@ -36,7 +37,7 @@ class Matricula extends Model
      *
      * @var array
      */
-    protected $fillable = ['aluId','graId','secId'];
+    protected $fillable = ['matPeriodo','aluId','graId','secId'];
 
 
     /**

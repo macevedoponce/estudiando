@@ -2,9 +2,9 @@
     <div class="box-body">
         
         <div class="form-group">
-            {{ Form::label('graNombre') }}
-            {{ Form::text('graNombre', $grado->graNombre, ['class' => 'form-control' . ($errors->has('graNombre') ? ' is-invalid' : ''), 'placeholder' => 'Granombre']) }}
-            {!! $errors->first('graNombre', '<div class="invalid-feedback">:message</div>') !!}
+            <strong>Nombre:</strong>
+            <input class="form-control" type="text" name="graNombre" id="graNombre" 
+        value="{{isset($grado->graNombre)?$grado->graNombre:old('graNombre') }}">
         </div>
 
     </div>

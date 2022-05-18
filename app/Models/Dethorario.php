@@ -15,12 +15,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property Horario $horario
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
+ * 
+ * @property Curso $curso
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class Dethorario extends Model
 {
     
     static $rules = [
-		'horId' => 'required',
+        'dia' => 'required',
+		'hora_inicio' => 'required',
+        'hora_fin' => 'required',
 		'curId' => 'required',
     ];
 
@@ -31,15 +37,16 @@ class Dethorario extends Model
      *
      * @var array
      */
-    protected $fillable = ['horId','curId'];
+    protected $fillable = ['dia','hora_inicio','hora_fin','curId'];
 
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function horario()
+    
+    public function curso()
     {
-        return $this->hasOne('App\Models\Horario', 'id', 'horId');
+        return $this->hasOne('App\Models\Curso', 'id', 'curId');
     }
     
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dethorario;
+use App\Rules\LessonTimeAvailabilityRule;
 use App\Models\Curso;
 use App\Models\Horario;
 use Illuminate\Http\Request;
@@ -20,8 +21,10 @@ class DethorarioController extends Controller
      */
     public function index()
     {
-        $dethorarios = Dethorario::paginate();
-        return view('dethorario.index', compact('dethorarios'))
+        $dethorarios = Dethorario::paginate(5);
+        $curso = Curso::all();
+        $hor = Horario::all();
+        return view('dethorario.index', compact('dethorarios','curso','hor'))
             ->with('i', (request()->input('page', 1) - 1) * $dethorarios->perPage());
     }
 
@@ -34,8 +37,10 @@ class DethorarioController extends Controller
     {
         $dethorario = new Dethorario();
         $curso = Curso::pluck('curNombre','id');
-        $horario = Horario::pluck('horDia','id');
-        return view('dethorario.create', compact('dethorario','curso','horario'));
+        //$horario = Horario::pluck('horDia','id');
+        $hor = Horario::all();
+        $cur = Curso::all();
+        return view('dethorario.create', compact('dethorario','curso','hor','cur'));
     }
 
     /**
@@ -46,12 +51,39 @@ class DethorarioController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Dethorario::$rules);
+        //dd($request->all());
+        //request()->validate(Dethorario::$rules);
 
+        /*$dethorario = Dethorario::create($request->all());*/
+        $campos=[
+            'dia' => 'required|integer|min:1|max:7',
+            'hora_inicio' => ['required', new LessonTimeAvailabilityRule(),'date_format:' . config('panel.lesson_time_format')],
+            'hora_fin' => ['required','after:start_time','date_format:'.config('panel.lesson_time_format')],
+            'curId' => 'required',
+
+            
+
+           // 'curId' => 'required|unique:dethorarios',
+		    //'horario' => 'required',
+        ];
+        $mensaje=[
+            'curId.required'=>'El Curso es requerido',
+            'horario.required'=>'El horario es requerido',
+            'curId.unique'=>'El Curso ya tiene registrado un horario',
+        ];
+        
+        $this->validate($request,$campos,$mensaje);
         $dethorario = Dethorario::create($request->all());
+        /*
+        $dethorario = Dethorario::create([
+            
+            //'horId' => $request->horId,
+            'curId' => $request->curId,      
+            'horario' => implode(',', $request->horario),     
+        ]);*/
 
         return redirect()->route('dethorarios.index')
-            ->with('success', 'Dethorario created successfully.');
+            ->with('success', 'DetHorario creado exitosamente !');
     }
 
     /**
@@ -74,10 +106,12 @@ class DethorarioController extends Controller
      */
     public function edit($id)
     {
+        $hor = Horario::all();
+        $cur = Curso::all();
         $dethorario = Dethorario::find($id);
         $curso = Curso::pluck('curNombre','id');
-        $horario = Horario::pluck('horDia','id');
-        return view('dethorario.edit', compact('dethorario','curso','horario'));
+       // $horario = Horario::pluck('horDia','id');
+        return view('dethorario.edit', compact('dethorario','curso','hor','cur'));
     }
 
     /**
@@ -89,9 +123,30 @@ class DethorarioController extends Controller
      */
     public function update(Request $request, Dethorario $dethorario)
     {
-        request()->validate(Dethorario::$rules);
 
-        $dethorario->update($request->all());
+        $campos=[
+            'curId' => 'required',
+		    'horario' => 'required',
+        ];
+        $mensaje=[
+            'curId.required'=>'El Curso es requerido',
+            'horario.required'=>'La horario es requerida',
+            
+        ];
+        
+        $this->validate($request,$campos,$mensaje);
+
+        $dethorario->update([
+            
+            //'horId' => $request->horId,
+            'curId' => $request->curId,      
+            'horario' => implode(',', $request->horario),     
+        ]);
+
+
+        //request()->validate(Dethorario::$rules);
+
+        //$dethorario->update($request->all());
 
         return redirect()->route('dethorarios.index')
             ->with('success', 'Dethorario updated successfully');

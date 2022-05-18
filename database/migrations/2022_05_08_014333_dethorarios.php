@@ -14,14 +14,25 @@ class Dethorarios extends Migration
     public function up()
     {
         //
+        /*
         Schema::create('dethorarios', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->bigIncrements('id');
-            $table->bigInteger('horId')->unsigned();
+            $table->text('horario');
             $table->bigInteger('curId')->unsigned();
             $table->timestamps();
 
-            $table->foreign('horId')->references('id')->on('horarios')->onDelete("cascade");
+            $table->foreign('curId')->references('id')->on('cursos')->onDelete("cascade");
+        });*/
+        Schema::create('dethorarios', function (Blueprint $table) {
+            $table->engine="InnoDB";
+            $table->bigIncrements('id');
+            $table->integer('dia');
+            $table->time('hora_inicio');
+            $table->time('hora_fin');
+            $table->bigInteger('curId')->unsigned();
+            $table->timestamps();
+
             $table->foreign('curId')->references('id')->on('cursos')->onDelete("cascade");
         });
     }

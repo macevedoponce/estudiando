@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.user_type.auth')
 
 @section('template_title')
     Create Matricula
@@ -12,17 +12,64 @@
                 @includeif('partials.errors')
 
                 <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">Create Matricula</span>
+                     <!-- mensaje -->
+                     <div class="card-header">
+                        <div class="float-right">
+                            <a class="btn btn-primary" href="{{ route('cursos.index') }}"> Volver</a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('matriculas.store') }}"  role="form" enctype="multipart/form-data">
-                            @csrf
+                @if (count($errors)>0)
+                <div class="alert alert-danger" role="alert">
 
-                            @include('matricula.form')
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>  
+                @endforeach
+                </ul>
+                </div>
+                @endif
+                <!-- fin mensaje -->
+                    
+                    <div class="row">
+                        <div class="col">
+                          <div class="card-header">
+                              <span class="card-title">Crear MAtricula</span>
+                          </div>
+                          <div class="card-body">
+                              <form method="POST" action="{{ route('matriculas.store') }}"  role="form" enctype="multipart/form-data">
+                                  @csrf
+      
+                                  @include('matricula.form')
+      
+                              </form>
+                          </div>
+                        </div>
+                        <div class="col-md-auto">
+                          <div class="card-header">
+                              <span class="card-title">Importar Matricula</span>
+                          </div>
+                          <div class="card-body">
+                              <form method="POST" action="{{ route('matriculas.store') }}"  role="form" enctype="multipart/form-data">
+                                  @csrf
+      
+                                  <div class="box box-info padding-1">
+                                      <div class="form-group">
+                                          <h6>Seleccionar  archivo .csv</h6>
+                                          <div class="mb-3">
+                                            <input class="form-control" type="file" accept="application/csv, .csv,.xlsx" name="import_file"><br>
+                                            <button type="submit" class="btn btn-dark  mb-0"><i class="fa fa-fw fa-cloud-upload"></i> Importar</button>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  
+                              </form>
+                          </div>
+                        </div>
+                      </div>
 
-                        </form>
-                    </div>
+
+
+
                 </div>
             </div>
         </div>

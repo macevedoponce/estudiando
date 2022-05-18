@@ -60,9 +60,7 @@
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $curso->curCodigo }}</td>
 											<td>{{ $curso->curNombre }}</td>
-											<td>
-                                                {{ $curso->docente->docNombres}}
-                                            </td>
+											<td>{{ $curso->docente->docNombres}} {{ $curso->docente->docApellidoPaterno}} {{ $curso->docente->docApellidoMaterno}}</td>
 											<td>{{ $curso->grado->graNombre }}</td>
 											<td>{{ $curso->seccion->secNombre }}</td>
 

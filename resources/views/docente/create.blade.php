@@ -54,7 +54,7 @@
         
                                     <div class="box box-info padding-1">
                                         <div class="form-group">
-                                            <h6>Seleccionar  archivo</h6>
+                                            <h6>Seleccionar  archivo .csv</h6>
                                             <div class="mb-3">
                                               <input class="form-control" type="file" accept="application/csv, .csv,.xlsx" name="import_file"><br>
                                               <button type="submit" class="btn btn-dark  mb-0"><i class="fa fa-fw fa-cloud-upload"></i> Importar</button>

@@ -17,6 +17,7 @@ class Matriculas extends Migration
         Schema::create('matriculas', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->bigIncrements('id');
+            $table->string('matPeriodo');
             $table->bigInteger('aluId')->unsigned();
             $table->bigInteger('graId')->unsigned();
             $table->bigInteger('secId')->unsigned();

@@ -17,7 +17,6 @@ class Horarios extends Migration
         Schema::create('horarios', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->bigIncrements('id');
-            $table->string('horDia');
             $table->time('horInicio');
             $table->time('horFin');
             $table->timestamps();

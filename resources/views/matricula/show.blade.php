@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layouts.user_type.auth')
 @section('template_title')
     {{ $matricula->name ?? 'Show Matricula' }}
 @endsection
