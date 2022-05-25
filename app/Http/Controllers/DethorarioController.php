@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dethorario;
-use App\Rules\LessonTimeAvailabilityRule;
 use App\Models\Curso;
 use App\Models\Horario;
 use Illuminate\Http\Request;
@@ -56,10 +55,11 @@ class DethorarioController extends Controller
 
         /*$dethorario = Dethorario::create($request->all());*/
         $campos=[
-            'dia' => 'required|integer|min:1|max:7',
-            'hora_inicio' => ['required', new LessonTimeAvailabilityRule(),'date_format:' . config('panel.lesson_time_format')],
-            'hora_fin' => ['required','after:start_time','date_format:'.config('panel.lesson_time_format')],
-            'curId' => 'required',
+           // 'dia' => 'required|integer|min:1|max:7',
+           // 'hora_inicio' => ['required', new LessonTimeAvailabilityRule(),'date_format:' . config('panel.lesson_time_format')],
+          //  'hora_fin' => ['required','after:start_time','date_format:'.config('panel.lesson_time_format')],
+            'curId' => 'required|unique:dethorarios',
+            'horario' => 'required',
 
             
 
@@ -73,14 +73,14 @@ class DethorarioController extends Controller
         ];
         
         $this->validate($request,$campos,$mensaje);
-        $dethorario = Dethorario::create($request->all());
-        /*
+       // $dethorario = Dethorario::create($request->all());
+        
         $dethorario = Dethorario::create([
             
             //'horId' => $request->horId,
             'curId' => $request->curId,      
             'horario' => implode(',', $request->horario),     
-        ]);*/
+        ]);
 
         return redirect()->route('dethorarios.index')
             ->with('success', 'DetHorario creado exitosamente !');

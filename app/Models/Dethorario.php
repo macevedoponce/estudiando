@@ -24,9 +24,10 @@ class Dethorario extends Model
 {
     
     static $rules = [
-        'dia' => 'required',
-		'hora_inicio' => 'required',
-        'hora_fin' => 'required',
+       // 'dia' => 'required',
+		//'hora_inicio' => 'required',
+        //'hora_fin' => 'required',
+        'horario' => 'required',
 		'curId' => 'required',
     ];
 
@@ -37,7 +38,8 @@ class Dethorario extends Model
      *
      * @var array
      */
-    protected $fillable = ['dia','hora_inicio','hora_fin','curId'];
+    //protected $fillable = ['dia','hora_inicio','hora_fin','curId'];
+    protected $fillable = ['horario','curId'];
 
 
     /**

@@ -12,13 +12,14 @@
             @endforeach
         </select>
     </div>-->
-     
+
+     <!-- muestra todos los cursos -->
     <div class="form-check">
         <strong>CurID</strong>
         <select name ="curId" id="curId" class="form-select" aria-label="Default select example" >
             <option selected>{{$dethorario->curId}}</option>
             @foreach ($cur as $curso)
-            <option class="text-uppercase" value="{{$curso->id}}">{{ $curso->curCodigo}} | {{$curso->curNombre}} {{$curso->grado->graNombre}} {{$curso->seccion->secNombre}}</option>
+            <option class="text-uppercase" value="{{$curso->id}}">{{$curso->curNombre}} {{$curso->grado->graNombre}} {{$curso->seccion->secNombre}}</option>
             @endforeach
         </select>
     </div>
@@ -27,6 +28,7 @@
 
 
     <!-- inicio de prueba -->
+    <!--
 <div class="row">
     <div class="form-check col-md-4">
         <strong>Día:</strong>
@@ -41,16 +43,8 @@
         <input type="time" name="hora_fin" id="hora_fin">
     </div>
 </div>
-
-
-
+-->
     <!-- fin de prueba -->
-
-
-
-
-
-
 
 <!--
     <div class="form-check">
@@ -63,8 +57,11 @@
         </select>
     </div>
 -->
+
 <br>
-<!--
+
+
+<!-- muestra los horarios en los pque puede estar cada curso -->
    <div class="row">
         <div class="form-check col-md-2">
             <strong>LUNES</strong>
@@ -116,7 +113,7 @@
                 @endforeach
           </div>
     </div>
--->
+<!-- fin de muestra de horarios -->
    
     {{-- <div class="row">
         <div class="form-group col-md-2">
