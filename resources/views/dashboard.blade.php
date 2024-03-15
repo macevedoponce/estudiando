@@ -70,12 +70,12 @@
 
 
 
-  
+
 
 <!-- tarjetas de ayuda Estudiando -->
 
   <div class="row">
-   
+
     <div class="col-md-4 mb-4">
       <div class="card card-pricing">
         <div class="card-header bg-gradient-dark text-center pt-4 pb-5 position-relative">
@@ -101,7 +101,7 @@
             </div>
         </div>
         <div class="card-body text-center">
-          <img src="https://noestachido.org/wp-content/uploads/2021/02/curso-de-induccion.jpg" width="300px" height="200px" alt="">
+          <img src="https://www.formatemultiverse.com/wp-content/uploads/2020/04/clases-online.png" width="300px" height="200px" alt="">
           <a href="{{url('/docentes')}}" class="btn bg-gradient-dark w-100 mt-4 mb-0">
             Vamos
           </a>
@@ -134,7 +134,7 @@
             </div>
         </div>
         <div class="card-body text-center">
-          <img src="https://ucienegam.mx/wp-content/uploads/2020/09/Ambient-Virtual-545x400.png" width="300px" height="200px" alt="">
+          <img src="https://img.freepik.com/vector-premium/estudiantes-obtienen-educacion-linea-ilustracion-vectorial-concepto-graduacion-universitaria-caracter-personas-pequenas-planas-diploma-universitario-obtener-conocimientos-aprendiendo-internet-estudiante-feliz-bata_109722-3688.jpg" width="300px" height="200px" alt="">
           <a href="{{url('/alumnos')}}" class="btn bg-gradient-dark w-100 mt-4 mb-0">
             Vamos
           </a>
@@ -174,7 +174,7 @@
         </div>
       </div>
     </div>
-    
+
   </div>
 
 

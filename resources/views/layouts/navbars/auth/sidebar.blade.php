@@ -68,7 +68,7 @@
             <span class="nav-link-text ms-1">Registrar Horario de Curso</span>
         </a>
       </li>
-      
+
       <li class="nav-item pb-2">
         <a class="nav-link {{ (Request::is('grados') ? 'active' : '') }}" href="{{ url('grados') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -101,7 +101,7 @@
             <span class="nav-link-text ms-1">Horas</span>
         </a>
       </li>
-      
+
       <!-- fIN MENU -->
       <!-- INICIO USUARIO MENU -->
       <li class="nav-item mt-2">
@@ -137,8 +137,8 @@
             <span class="nav-link-text ms-1">Salir</span>
         </a>
       </li>
-      
+
     </ul>
   </div>
- 
+
 </aside>
